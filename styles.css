@@ -1,0 +1,28 @@
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: grey;
+    padding:10px;
+    margin: 300px 800px;
+    border:0;
+}
+button{
+    display: flex;
+    background-color: aqua;
+    gap:1px;
+    
+}
+.display{
+    display: flex;
+    min-width: 100px;
+    min-height: 20px;
+    border:black solid 1px;
+    justify-content: flex-end;
+}
+.row{
+    display: flex;
+    flex-direction: row;
+    align-items:stretch;
+}
