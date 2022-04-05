@@ -7,9 +7,10 @@
     width: 400px;
     margin: 300px 800px;
     border:2px black solid;
-    border-radius: 5px;
-    
+    border-radius: 5px;  
 }
+
+
 button{
     display: flex;
     background-color: rgba(33, 47, 247, 0.589);
@@ -19,6 +20,8 @@ button{
     margin-left: 3px;
     border-radius: 5px;
 }
+
+
 .display{
     overflow: hidden;
     display: flex;
@@ -32,11 +35,11 @@ button{
     margin-top: 15px;
     border-radius: 5px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    
 }
+
+
 .row1, .row2, .row3, .row4, .row5{
     display: flex;
-
     flex-direction: row;
     justify-content: space-evenly;
     padding: 3px;
@@ -47,20 +50,24 @@ button{
     margin-top: 3px;
 }
 
+
 .container .backspace{
     flex-grow: 1.4;
     background-color: rgba(255, 98, 98, 0.801);
     font-size: 20px;
 }
 
+
 .row1 .operation{
     flex-grow: 1.1;
 
 }
 
+
 .row5 .number{
     flex-grow:3.65 ;
 }
+
 
 .row5 .equal{
     flex-grow: 1.8;
@@ -69,24 +76,32 @@ button{
     color: white;
 }
 
+
 .row5 .decimal{
     flex-grow: 0.8;
     font-size: 20px;
     background-color: rgba(255, 239, 91, 0.733)
 }
 
+
 .container .number{
     background-color: yellowgreen;
     font-size: 20px;
 }
+
+
 .row1 .clear{
     background-color: rgba(255, 98, 98, 0.801);
     font-size: 20px;
     flex-grow: 0.7;
 }
+
+
 .container .operation{
     font-size: 20px;
 }
+
+
 .row4 .operation{
     flex-grow: 0.9;
 }
