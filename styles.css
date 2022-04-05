@@ -1,3 +1,9 @@
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 .container{
     display: flex;
     flex-direction: column;
@@ -5,7 +11,7 @@
     padding:10px;
     height:560px;
     width: 400px;
-    margin: 300px 800px;
+    margin-bottom: 100px;
     border:2px black solid;
     border-radius: 5px;  
 }
@@ -104,4 +110,9 @@ button{
 
 .row4 .operation{
     flex-grow: 0.9;
+}
+
+body .signature{
+    font-size: 30px;
+    font-weight: bolder;
 }
