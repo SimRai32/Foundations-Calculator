@@ -1,22 +1,25 @@
-let firstNumber = null;
+let firstNumber = "";
 let sign = null;
 let display ="";
-let equals=false;
+
 
 function add(numberOne,numberTwo){
     let total =numberOne+numberTwo;
     return total;
 }
 
+
 function subtract(numberOne,numberTwo){
     let total =numberOne-numberTwo;
     return total;
 }
 
+
 function multiply(numberOne,numberTwo){
     let total =numberOne*numberTwo;
     return total;
 }
+
 
 function divide(numberOne,numberTwo){
     let total =numberOne/numberTwo;
@@ -25,6 +28,17 @@ function divide(numberOne,numberTwo){
     }
     return total;
 }
+
+
+function operationCheck(){
+    if(firstNumber=="")firstNumber=display;
+    else if(firstNumber&&display!=""){
+        operate(parseFloat(firstNumber),sign,parseFloat(display));
+        
+    }
+    display="";
+}
+
 
 function operate(numberOne,operation,numberTwo){
     let total = 0;
@@ -36,10 +50,20 @@ function operate(numberOne,operation,numberTwo){
     else if(operation =="*"){total=multiply(numberOne,numberTwo);}
     
     else if(operation =="/"){total=divide(numberOne,numberTwo);}
-    
-    return total;
 
+    if (typeof total ==="string"){
+        document.querySelector(".display").innerHTML=total;
+        firstNumber="";
+        display="";
+        return;
+    }
+
+    document.querySelector(".display").innerHTML= +total.toFixed(3);
+    firstNumber=total;
+    display="";
+    return;
 }
+
 
 let numbers = document.querySelectorAll(".number");
 numbers.forEach((number) =>{
@@ -50,45 +74,23 @@ numbers.forEach((number) =>{
     })
 })
 
+
 let operations = document.querySelectorAll(".operation");
 operations.forEach((operation) =>{
     operation.addEventListener("click", () =>{
-            
-            if (sign==null){
-                sign=operation.value;
-                firstNumber=display;
-                display="";
-                document.querySelector(".display").innerHTML=firstNumber+sign;
-                
-            }
-            else if(equals==true){
-                equals=false;
+                document.querySelector(".display").innerHTML=operation.value;
+                operationCheck();
                 sign=operation.value;
                 
-
-            }
-
-            else if(display!=null){
-               let total = operate(parseInt(firstNumber),sign,parseInt(display));
-                document.querySelector(".display").innerHTML=+total.toFixed(3);
-                sign=operation.value;
-                firstNumber=total;
-                display="";
-                
-            }
-            
+             
         })
     })
 
 
 let equation=document.querySelector(".equal");
 equation.addEventListener("click",() =>{
-    if (sign!=null && display !=null){
-        let total = operate(parseInt(firstNumber),sign,parseInt(display));
-        document.querySelector(".display").innerHTML=+total.toFixed(3);
-        firstNumber=total;
-        display="";
-        equals=true;
+    if (firstNumber && display !=""){
+        operate(parseFloat(firstNumber),sign,parseFloat(display));
     }
 })
 
@@ -96,18 +98,65 @@ equation.addEventListener("click",() =>{
 let restart=document.querySelector(".clear");
 restart.addEventListener("click", ()=>{
     display="";
-    firstNumber=null;
+    firstNumber="";
     sign=null;
     document.querySelector(".display").innerHTML=null;
 })
 
+
 let backSpace=document.querySelector(".backspace");
 backSpace.addEventListener("click", () =>{
     display=display.slice(0, (display.length)-1);
-    console.log(display);
     document.querySelector(".display").innerHTML=display;
 })
 
-let decimal=document.querySelector(".decimal");
-decimal.addEventListener("decimal",  ()=>{})
 
+let decimal=document.querySelector(".decimal");
+decimal.addEventListener("click",  ()=>{
+            if(display.includes(".")==false){
+            display=display+".";
+            document.querySelector(".display").innerHTML=display;
+            }
+})
+
+
+window.addEventListener("keydown", (e)=>{
+    
+    if(e.key>=0 && e.key<=9){
+        display=display+e.key;
+            document.querySelector(".display").innerHTML=display;
+    }
+
+    else if(e.key=="+"||e.key=="-"||e.key=="*"||e.key=="/"){
+        document.querySelector(".display").innerHTML=e.key;
+                operationCheck();
+                sign=e.key;
+    }
+
+    else if(e.key=="="){
+        if (firstNumber && display !=""){
+            operate(parseFloat(firstNumber),sign,parseFloat(display));
+        }
+    }
+
+    else if (e.key=="Backspace"){
+
+        display=display.slice(0, (display.length)-1);
+        document.querySelector(".display").innerHTML=display;
+    }
+
+    else if (e.key=="."){
+        if(display.includes(".")==false){
+            display=display+".";
+            document.querySelector(".display").innerHTML=display;
+            }
+    }
+    
+    else if(e.key=="Delete"){
+        display="";
+        firstNumber="";
+        sign=null;
+        document.querySelector(".display").innerHTML=null;
+    }
+    
+})  
